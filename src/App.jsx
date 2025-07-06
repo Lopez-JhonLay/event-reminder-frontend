@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
 import Events from "./pages/Events";
 
 import { ProtectedRoute, PublicRoute } from "./components/RouteGuard";
@@ -32,10 +32,10 @@ function App() {
 					}
 				/>
 				<Route
-					path="/dashboard"
+					path="/home"
 					element={
 						<ProtectedRoute>
-							<Dashboard />
+							<Home />
 						</ProtectedRoute>
 					}
 				/>
@@ -47,22 +47,22 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
-				{/* Default route - redirect based on authentication status */}
+				/* Default route - redirect based on authentication status */
 				<Route
 					path="/"
 					element={
 						<Navigate
-							to={isAuthenticated() ? "/dashboard" : "/login"}
+							to={isAuthenticated() ? "/home" : "/login"}
 							replace
 						/>
 					}
 				/>
-				{/* Catch all route - redirect to home */}
+				/* Catch all route - redirect to home */
 				<Route
 					path="*"
 					element={
 						<Navigate
-							to={isAuthenticated() ? "/dashboard" : "/login"}
+							to={isAuthenticated() ? "/home" : "/login"}
 							replace
 						/>
 					}

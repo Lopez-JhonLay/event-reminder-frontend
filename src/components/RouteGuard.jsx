@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import useAuthStore from "@/store/auth";
 
-// Guard for routes that require authentication (like Dashboard)
+// Guard for routes that require authentication (like Home)
 export const ProtectedRoute = ({ children }) => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
@@ -24,7 +24,7 @@ export const PublicRoute = ({ children }) => {
 	if (isAuthenticated()) {
 		return (
 			<Navigate
-				to="/dashboard"
+				to="/home"
 				replace
 			/>
 		);

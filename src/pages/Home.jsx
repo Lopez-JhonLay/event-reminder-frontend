@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 
-function Dashboard() {
+function Home() {
 	return (
 		<div>
 			<Header />
 			<div className="max-w-4xl mx-auto mt-10 p-4">
-				<h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+				<h1 className="text-2xl font-bold mb-4">Home</h1>
 				<p className="text-gray-600 mb-6">
-					Welcome to your event management dashboard. Here you can view and
-					manage your events.
+					Welcome to your event management home. Here you can view and manage
+					your events.
 				</p>
 				<div className="bg-white p-6 rounded-lg shadow-sm border">
 					<h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
@@ -27,4 +27,4 @@ function Dashboard() {
 	);
 }
 
-export default Dashboard;
+export default Home;
