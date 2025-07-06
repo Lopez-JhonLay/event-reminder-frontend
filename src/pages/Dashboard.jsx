@@ -1,32 +1,28 @@
-import { Button } from "@/components/ui/button";
-
-import api from "@/api/axios";
-
-import { useNavigate } from "react-router-dom";
-
-import useAuthStore from "@/store/auth";
+import { Link } from "react-router-dom";
+import Header from "@/components/Header";
 
 function Dashboard() {
-	const navigate = useNavigate();
-	const logout = useAuthStore((state) => state.logout);
-
-	const handleLogout = async () => {
-		try {
-			const response = await api.post("/logout");
-			console.log("Logout successful:", response.data);
-			logout();
-			navigate("/login");
-		} catch (error) {
-			console.error("Logout failed:", error);
-			// Still logout locally even if server request fails
-			logout();
-			navigate("/login");
-		}
-	};
-
 	return (
 		<div>
-			<Button onClick={handleLogout}>Logout</Button>
+			<Header />
+			<div className="max-w-4xl mx-auto mt-10 p-4">
+				<h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+				<p className="text-gray-600 mb-6">
+					Welcome to your event management dashboard. Here you can view and
+					manage your events.
+				</p>
+				<div className="bg-white p-6 rounded-lg shadow-sm border">
+					<h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
+					<div className="space-y-3">
+						<Link
+							to="/events"
+							className="inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+						>
+							View All Events
+						</Link>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }

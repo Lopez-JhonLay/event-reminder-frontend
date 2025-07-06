@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Events from "./pages/Events";
 
 import { ProtectedRoute, PublicRoute } from "./components/RouteGuard";
 
@@ -35,6 +36,14 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<Dashboard />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/events"
+					element={
+						<ProtectedRoute>
+							<Events />
 						</ProtectedRoute>
 					}
 				/>
