@@ -6,6 +6,8 @@ import api from "@/api/axios";
 
 import useAuthStore from "../store/auth";
 
+import { useNavigate } from "react-router-dom";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,6 +19,8 @@ function Login() {
 	const [loading, setLoading] = useState(false);
 	const setToken = useAuthStore((state) => state.setToken);
 	const setUser = useAuthStore((state) => state.setUser);
+
+	const navigate = useNavigate();
 
 	// handlers
 	const handleChange = (e) => {
@@ -31,7 +35,7 @@ function Login() {
 			console.log(response.data);
 			setToken(response.data.token);
 			setUser(response.data.user);
-			// Navigation will be handled automatically by PublicRoute
+			navigate("/home");
 		} catch (err) {
 			setError(err.response?.data?.message || "Login failed.");
 		} finally {
