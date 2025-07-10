@@ -83,13 +83,13 @@ function Home() {
 								No Event Happening Right Now
 							</h3>
 							<p className="text-sm text-gray-500">
-								Check back later or view all your events.
+								Check back later or view all your upcoming events.
 							</p>
 							<Link
 								to="/events"
 								className="inline-block mt-4 bg-black text-white px-4 py-2 rounded-md transition-colors"
 							>
-								View All Upcoming Events
+								View your upcoming events ➡️
 							</Link>
 						</div>
 					</div>
