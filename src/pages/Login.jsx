@@ -17,7 +17,7 @@ import { Card, CardContent } from "@/components/ui/card";
 function Login() {
 	// state
 	const [form, setForm] = useState({ email: "", password: "" });
-	const [error, setError] = useState(null);
+	const [errors, setErrors] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
 	const setToken = useAuthStore((state) => state.setToken);
@@ -40,7 +40,8 @@ function Login() {
 			setUser(response.data.user);
 			navigate("/home");
 		} catch (err) {
-			setError(err.response?.data?.message || "Login failed.");
+			setErrors(err.response?.data?.message || "Login failed.");
+			console.log(`Error: ${JSON.stringify(err.response?.data)}`);
 		} finally {
 			setLoading(false);
 		}
@@ -51,7 +52,7 @@ function Login() {
 				<CardContent>
 					<h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
 
-					{error && <p className="text-red-500 text-sm mb-3">{error}</p>}
+					{errors && <p className="text-red-500 text-sm mb-3">{errors}</p>}
 
 					<form
 						onSubmit={handleSubmit}
