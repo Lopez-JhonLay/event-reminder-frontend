@@ -8,7 +8,7 @@ function Header() {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const logout = useAuthStore((state) => state.logout);
-	const user = useAuthStore((state) => state.user);
+	// const user = useAuthStore((state) => state.user);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const handleLogout = async () => {
@@ -37,6 +37,9 @@ function Header() {
 						>
 							Event Reminder
 						</Link>
+					</div>
+
+					<div>
 						{/* Desktop Navigation */}
 						<nav className="hidden md:flex space-x-4">
 							<Link
@@ -59,16 +62,21 @@ function Header() {
 							>
 								Events
 							</Link>
+							<Link
+								to="/settings"
+								className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+									location.pathname === "/settings"
+										? "bg-blue-100 text-blue-700"
+										: "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+								}`}
+							>
+								Settings
+							</Link>
 						</nav>
 					</div>
 
 					{/* Desktop User Info and Logout */}
 					<div className="hidden md:flex items-center space-x-4">
-						{user && (
-							<span className="text-sm text-gray-600">
-								Welcome, {user.first_name}!
-							</span>
-						)}
 						<Button
 							onClick={handleLogout}
 							variant="outline"
@@ -139,13 +147,18 @@ function Header() {
 							>
 								Events
 							</Link>
+							<Link
+								to="/settings"
+								className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+									location.pathname === "/settings"
+										? "bg-blue-100 text-blue-700"
+										: "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+								}`}
+							>
+								Settings
+							</Link>
 						</nav>
 						<div className="flex flex-col space-y-2 mt-4">
-							{user && (
-								<span className="text-sm text-gray-600 px-3">
-									Welcome, {user.first_name}!
-								</span>
-							)}
 							<div className="px-3">
 								<Button
 									onClick={() => {

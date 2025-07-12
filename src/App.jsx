@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
+import Settings from "./pages/Settings";
 
 import { ProtectedRoute, PublicRoute } from "./components/RouteGuard";
 
@@ -44,6 +45,14 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<Events />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/settings"
+					element={
+						<ProtectedRoute>
+							<Settings />
 						</ProtectedRoute>
 					}
 				/>

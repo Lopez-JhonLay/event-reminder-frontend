@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import api from "@/api/axios";
-import { formatFormForBackend } from "@/utils/timeUtils";
+import { formatFormForBackend, getTimeUntilEvent } from "@/utils/timeUtils";
 
 import useAuthStore from "@/store/auth";
 
@@ -109,7 +109,27 @@ function Events() {
 			console.log("API Response:", response.data.events);
 			// Ensure we always set an array
 			const eventsData = response.data.events;
-			setEvents(eventsData);
+
+			// Filter for upcoming events only
+			const now = new Date();
+
+			const upcomingEvents = eventsData.filter((event) => {
+				const eventStartDateTime = new Date(
+					`${event.event_date}T${event.start_time}`
+				);
+
+				// Include only if event hasn't started yet
+				return eventStartDateTime > now;
+			});
+
+			// Sort upcoming events by date and time (earliest first)
+			upcomingEvents.sort((a, b) => {
+				const dateTimeA = new Date(`${a.event_date}T${a.start_time}`);
+				const dateTimeB = new Date(`${b.event_date}T${b.start_time}`);
+				return dateTimeA - dateTimeB;
+			});
+
+			setEvents(upcomingEvents);
 		} catch (error) {
 			console.error("Failed to fetch events:", error);
 			setEvents([]);
@@ -128,7 +148,7 @@ function Events() {
 			<Header />
 			<div className="max-w-4xl mx-auto mt-10 p-4">
 				<div className="flex justify-between items-center mb-4">
-					<h2 className="text-xl font-semibold">Your Events</h2>
+					<h2 className="text-xl font-semibold">Your Upcoming Events</h2>
 					<Dialog
 						open={open}
 						onOpenChange={(isOpen) => {
@@ -234,7 +254,13 @@ function Events() {
 							>
 								<div className="flex justify-between items-start">
 									<div className="flex-1">
-										<h3 className="font-semibold text-lg">{event.title}</h3>
+										<div className="flex items-center gap-2 mb-1">
+											<h3 className="font-semibold text-lg">{event.title}</h3>
+											<span className="text-sm text-green-600 font-medium">
+												({getTimeUntilEvent(event.event_date, event.start_time)}
+												)
+											</span>
+										</div>
 										<p className="text-sm text-gray-600 mt-1">
 											{event.description}
 										</p>
