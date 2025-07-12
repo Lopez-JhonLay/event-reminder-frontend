@@ -8,6 +8,8 @@ import useAuthStore from "../store/auth";
 
 import { useNavigate } from "react-router-dom";
 
+import { Eye, EyeOff } from "lucide-react";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,6 +19,7 @@ function Login() {
 	const [form, setForm] = useState({ email: "", password: "" });
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
 	const setToken = useAuthStore((state) => state.setToken);
 	const setUser = useAuthStore((state) => state.setUser);
 
@@ -62,14 +65,27 @@ function Login() {
 							onChange={handleChange}
 							required
 						/>
-						<Input
-							type="password"
-							name="password"
-							placeholder="Password"
-							value={form.password}
-							onChange={handleChange}
-							required
-						/>
+						<div className="relative">
+							<Input
+								type={showPassword ? "text" : "password"}
+								name="password"
+								placeholder="Password"
+								value={form.password}
+								onChange={handleChange}
+								required
+							/>
+							<button
+								type="button"
+								className="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500 hover:text-gray-700"
+								onClick={() => setShowPassword(!showPassword)}
+							>
+								{showPassword ? (
+									<EyeOff className="h-5 w-5" />
+								) : (
+									<Eye className="h-5 w-5" />
+								)}
+							</button>
+						</div>
 						<Button
 							type="submit"
 							className="w-full"
