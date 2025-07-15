@@ -26,14 +26,14 @@ function Header() {
 	};
 
 	return (
-		<header className="bg-white shadow-sm border-b">
+		<header className="bg-background shadow-sm border-b border-border">
 			<div className="max-w-4xl mx-auto px-4 py-4">
 				<div className="flex justify-between items-center">
 					{/* Logo and Desktop Navigation */}
 					<div className="flex items-center space-x-4">
 						<Link
 							to="/home"
-							className="text-xl font-bold text-gray-800 transition-colors"
+							className="text-xl font-bold text-foreground transition-colors"
 						>
 							Event Reminder
 						</Link>
@@ -46,8 +46,8 @@ function Header() {
 								to="/home"
 								className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
 									location.pathname === "/home"
-										? "bg-blue-100 text-blue-700"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+										? "bg-primary text-primary-foreground"
+										: "text-muted-foreground hover:text-foreground hover:bg-muted"
 								}`}
 							>
 								Home
@@ -56,8 +56,8 @@ function Header() {
 								to="/events"
 								className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
 									location.pathname === "/events"
-										? "bg-blue-100 text-blue-700"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+										? "bg-primary text-primary-foreground"
+										: "text-muted-foreground hover:text-foreground hover:bg-muted"
 								}`}
 							>
 								Events
@@ -66,8 +66,8 @@ function Header() {
 								to="/settings"
 								className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
 									location.pathname === "/settings"
-										? "bg-blue-100 text-blue-700"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+										? "bg-primary text-primary-foreground"
+										: "text-muted-foreground hover:text-foreground hover:bg-muted"
 								}`}
 							>
 								Settings
@@ -123,14 +123,14 @@ function Header() {
 
 				{/* Mobile Menu */}
 				{isMenuOpen && (
-					<div className="md:hidden mt-4 pb-4 border-t pt-4">
+					<div className="md:hidden mt-4 pb-4 border-t border-border pt-4">
 						<nav className="flex flex-col space-y-2">
 							<Link
 								to="/home"
 								className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
 									location.pathname === "/home"
-										? "bg-blue-100 text-blue-700"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+										? "bg-primary text-primary-foreground"
+										: "text-muted-foreground hover:text-foreground hover:bg-muted"
 								}`}
 								onClick={() => setIsMenuOpen(false)}
 							>
@@ -140,8 +140,8 @@ function Header() {
 								to="/events"
 								className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
 									location.pathname === "/events"
-										? "bg-blue-100 text-blue-700"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+										? "bg-primary text-primary-foreground"
+										: "text-muted-foreground hover:text-foreground hover:bg-muted"
 								}`}
 								onClick={() => setIsMenuOpen(false)}
 							>
@@ -151,8 +151,8 @@ function Header() {
 								to="/settings"
 								className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
 									location.pathname === "/settings"
-										? "bg-blue-100 text-blue-700"
-										: "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+										? "bg-primary text-primary-foreground"
+										: "text-muted-foreground hover:text-foreground hover:bg-muted"
 								}`}
 							>
 								Settings

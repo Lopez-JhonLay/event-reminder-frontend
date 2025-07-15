@@ -242,33 +242,39 @@ function Events() {
 				</div>
 
 				{loading ? (
-					<p>Loading events...</p>
+					<p className="text-muted-foreground">Loading events...</p>
 				) : events.length === 0 ? (
-					<p>No events yet.</p>
+					<p className="text-muted-foreground">No events yet.</p>
 				) : (
 					<ul className="space-y-4">
 						{events.map((event) => (
 							<li
 								key={event.id}
-								className="p-4 border rounded-lg"
+								className="p-4 border border-border rounded-lg bg-card"
 							>
 								<div className="flex justify-between items-start">
 									<div className="flex-1">
 										<div className="flex items-center gap-2 mb-1">
-											<h3 className="font-semibold text-lg">{event.title}</h3>
+											<h3 className="font-semibold text-lg text-foreground">
+												{event.title}
+											</h3>
 											<span className="text-sm text-green-600 font-medium">
 												({getTimeUntilEvent(event.event_date, event.start_time)}
 												)
 											</span>
 										</div>
-										<p className="text-sm text-gray-600 mt-1">
+										<p className="text-sm text-muted-foreground mt-1">
 											{event.description}
 										</p>
-										<p className="text-sm mt-2">📅 {event.event_date}</p>
-										<p className="text-sm mt-1">
+										<p className="text-sm mt-2 text-muted-foreground">
+											📅 {event.event_date}
+										</p>
+										<p className="text-sm mt-1 text-muted-foreground">
 											⏰ {event.start_time} - {event.end_time}
 										</p>
-										<p className="text-sm mt-1">📍 {event.location}</p>
+										<p className="text-sm mt-1 text-muted-foreground">
+											📍 {event.location}
+										</p>
 									</div>
 
 									{/* Buttons positioned on the right */}

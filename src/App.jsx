@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -9,9 +10,16 @@ import Settings from "./pages/Settings";
 import { ProtectedRoute, PublicRoute } from "./components/RouteGuard";
 
 import useAuthStore from "./store/auth";
+import useThemeStore from "./store/theme";
 
 function App() {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+	const initializeTheme = useThemeStore((state) => state.initializeTheme);
+
+	useEffect(() => {
+		// Initialize theme on app start
+		initializeTheme();
+	}, [initializeTheme]);
 
 	return (
 		<BrowserRouter>
@@ -56,7 +64,7 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
-				/* Default route - redirect based on authentication status */
+				{/* Default route - redirect based on authentication status */}
 				<Route
 					path="/"
 					element={
@@ -66,7 +74,7 @@ function App() {
 						/>
 					}
 				/>
-				/* Catch all route - redirect to home */
+				{/* Catch all route - redirect to home */}
 				<Route
 					path="*"
 					element={

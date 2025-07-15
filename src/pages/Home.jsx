@@ -43,23 +43,23 @@ function Home() {
 				<h2 className="text-xl font-semibold mb-4">Current Event</h2>
 
 				{loading ? (
-					<div className="p-6 border rounded-lg bg-white shadow-sm">
-						<p>Loading current event...</p>
+					<div className="p-6 border border-border rounded-lg bg-card shadow-sm">
+						<p className="text-muted-foreground">Loading current event...</p>
 					</div>
 				) : currentEvent ? (
-					<div className="p-6 border rounded-lg bg-white shadow-sm">
-						<h3 className="font-semibold text-lg text-blue-600 mb-2">
+					<div className="p-6 border border-border rounded-lg bg-card shadow-sm">
+						<h3 className="font-semibold text-lg text-primary mb-2">
 							{currentEvent.title}
 						</h3>
-						<p className="text-sm text-gray-600 mb-3">
+						<p className="text-sm text-muted-foreground mb-3">
 							{currentEvent.description}
 						</p>
 						<div className="flex items-center space-x-4 text-sm">
-							<p className="flex items-center">
+							<p className="flex items-center text-muted-foreground">
 								<span className="mr-1">📅</span>
 								{currentEvent.event_date}
 							</p>
-							<p className="flex items-center">
+							<p className="flex items-center text-muted-foreground">
 								<span className="mr-1">⏰</span>
 								{currentEvent.start_time} - {currentEvent.end_time}
 							</p>
@@ -72,22 +72,22 @@ function Home() {
 						</div>
 					</div>
 				) : (
-					<div className="p-6 border rounded-lg bg-white shadow-sm">
+					<div className="p-6 border border-border rounded-lg bg-card shadow-sm">
 						<div className="text-center">
 							<div className="mb-4">
-								<span className="flex w-16 h-16 bg-gray-100 rounded-full items-center justify-center text-2xl mx-auto">
+								<span className="flex w-16 h-16 bg-muted rounded-full items-center justify-center text-2xl mx-auto">
 									📅
 								</span>
 							</div>
-							<h3 className="text-lg font-medium text-gray-600 mb-2">
+							<h3 className="text-lg font-medium text-muted-foreground mb-2">
 								No Event Happening Right Now
 							</h3>
-							<p className="text-sm text-gray-500">
+							<p className="text-sm text-muted-foreground">
 								Check back later or view all your upcoming events.
 							</p>
 							<Link
 								to="/events"
-								className="inline-block mt-4 bg-black text-white px-4 py-2 rounded-md transition-colors"
+								className="inline-block mt-4 bg-primary text-primary-foreground px-4 py-2 rounded-md transition-colors hover:bg-primary/90"
 							>
 								View your upcoming events ➡️
 							</Link>
